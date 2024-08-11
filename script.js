@@ -17,7 +17,7 @@ function addBookToLibrary(event) {
     const author = document.getElementById('author').value;
     const year = document.getElementById('year').value;
     const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').value;
+    const read = document.getElementById('read').checked;
     const newBook = new Book(title, author, year, pages, read);
     myLibrary.push(newBook);
     displayBooks();
