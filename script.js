@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 // Constructor function for creating new book objects
 function Book(title, author, year, pages, read) {
@@ -26,7 +26,8 @@ function addBookToLibrary(event) {
 // Function to display all books on the page
 function displayBooks() {
     const bookList = document.getElementById("bookList");
-    bookList.innerHTML = "";
+    bookList.innerHTML = ""; 
+    // the line above clears all content displayed and then shows the content again for each book in the list
     myLibrary.forEach((book) => {
         const bookCard = document.createElement("div");
         bookCard.className = "book-card";
@@ -47,5 +48,33 @@ function displayBooks() {
     });
 }
 
+// function removeBook() {
+//     myLibrary.pop();
+//     console.log(myLibrary);
+//     displayBooks();
+// }
+
 const addBookButton = document.querySelector('#add-books');
 addBookButton.addEventListener('click', addBookToLibrary);
+
+const newBook = document.querySelector("#newBookButton");
+newBook.addEventListener('click', () => {
+    const bookForm = document.querySelector("#bookFormContainer");
+    bookForm.classList.remove('hidden');
+});
+
+const cancelButton = document.querySelector("#cancelButton");
+cancelButton.addEventListener('click', () => {
+    const bookForm = document.querySelector("#bookFormContainer");
+    bookForm.classList.add('hidden');
+});
+
+// const removeButton = document.querySelector("#remove-button");
+// removeButton.addEventListener('click', removeBook);
+
+const clearButton = document.querySelector("#clear-button");
+clearButton.addEventListener('click', () => {
+    myLibrary = [];
+    console.log(myLibrary);
+    displayBooks();
+});
