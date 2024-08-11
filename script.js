@@ -10,7 +10,14 @@ function Book(title, author, year, pages, read) {
 }
 
 // Function to add a new book to the library array and display all books
-function addBookToLibrary(title, author, year, pages, read) {
+function addBookToLibrary(event) {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const year = document.getElementById('year').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').value;
     const newBook = new Book(title, author, year, pages, read);
     myLibrary.push(newBook);
     displayBooks();
@@ -20,11 +27,9 @@ function addBookToLibrary(title, author, year, pages, read) {
 function displayBooks() {
     const bookList = document.getElementById("bookList");
     bookList.innerHTML = "";
-
-    myLibrary.forEach((book, index) => {
+    myLibrary.forEach((book) => {
         const bookCard = document.createElement("div");
         bookCard.className = "book-card";
-        bookCard.dataset.index = index;
         bookCard.innerHTML = `
         <h3>${book.title}</h3>
         <p><strong>Author:</strong> ${book.author}</p>
@@ -38,7 +43,9 @@ function displayBooks() {
     `;
         bookList.appendChild(bookCard);
         console.log(bookCard);
-        console.log(bookList);
         console.log(myLibrary);
     });
 }
+
+const addBookButton = document.querySelector('#add-books');
+addBookButton.addEventListener('click', addBookToLibrary);
