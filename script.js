@@ -41,18 +41,20 @@ function displayBooks() {
         <button class="toggle-read-button">${
             book.read ? "Mark as Unread" : "Mark as Read"
         }</button>
-    `;
+    `;  
         bookList.appendChild(bookCard);
         console.log(bookCard);
         console.log(myLibrary);
+        const removeButtons = document.querySelectorAll('.remove-button');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                myLibrary.pop();
+                displayBooks();
+            });
+        });
+        console.log(myLibrary);
     });
 }
-
-// function removeBook() {
-//     myLibrary.pop();
-//     console.log(myLibrary);
-//     displayBooks();
-// }
 
 const addBookButton = document.querySelector('#add-books');
 addBookButton.addEventListener('click', addBookToLibrary);
@@ -68,9 +70,6 @@ cancelButton.addEventListener('click', () => {
     const bookForm = document.querySelector("#bookFormContainer");
     bookForm.classList.add('hidden');
 });
-
-// const removeButton = document.querySelector("#remove-button");
-// removeButton.addEventListener('click', removeBook);
 
 const clearButton = document.querySelector("#clear-button");
 clearButton.addEventListener('click', () => {
