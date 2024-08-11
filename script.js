@@ -41,7 +41,10 @@ function displayBooks() {
         <button class="toggle-read-button">${
             book.read ? "Mark as Unread" : "Mark as Read"
         }</button>
-    `;
+    `;  
+        bookList.appendChild(bookCard);
+        console.log(bookCard);
+        console.log(myLibrary);
         const removeButtons = document.querySelectorAll('.remove-button');
         removeButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -49,8 +52,6 @@ function displayBooks() {
                 displayBooks();
             });
         });
-        bookList.appendChild(bookCard);
-        console.log(bookCard);
         console.log(myLibrary);
     });
 }
