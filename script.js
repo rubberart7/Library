@@ -31,7 +31,6 @@ function displayBooks() {
     myLibrary.forEach((book, index) => {
         // the index parameter is already the index of the object in the array
         const bookCard = document.createElement("div");
-        bookCard.id = `book-${index}`;
         bookCard.className = "book-card";
         bookCard.innerHTML = `
         <h3>${book.title}</h3>
@@ -46,18 +45,25 @@ function displayBooks() {
         `;
         bookList.appendChild(bookCard);
         console.log(myLibrary);
+        // need to use index parameter to assign index to specific books and access the index
+        //using dataaset.index
     });
 }
 
 document.getElementById("bookList").addEventListener('click', (event) => {
+    // need event parameter to do things like event.target
     if (event.target.classList.contains('remove-button')) {
         const index = parseInt(event.target.dataset.index, 10);
+        // target refers to element that triggered the event,
+        //dataset.index refers to the index of the dataset value
         myLibrary.splice(index, 1);
         displayBooks();
     }
 
     if (event.target.classList.contains('toggle-read-button')) {
         const index = parseInt(event.target.previousElementSibling.dataset.index, 10);
+        // previous sibling is remove button and its used to get the index
+        // using the index allows you to change the correct book to toggle the read status
         myLibrary[index].read = !myLibrary[index].read;
         displayBooks();
     }
