@@ -28,33 +28,40 @@ function displayBooks() {
     const bookList = document.getElementById("bookList");
     bookList.innerHTML = ""; 
     // the line above clears all content displayed and then shows the content again for each book in the list
-    myLibrary.forEach((book) => {
+    myLibrary.forEach((book, index) => {
+        // the index parameter is already the index of the object in the array
         const bookCard = document.createElement("div");
+        bookCard.id = `book-${index}`;
         bookCard.className = "book-card";
         bookCard.innerHTML = `
         <h3>${book.title}</h3>
         <p><strong>Author:</strong> ${book.author}</p>
         <p><strong>Year:</strong> ${book.year}</p>
         <p><strong>Pages:</strong> ${book.pages}</p>
-        <p><strong>Read:</strong> ${book.read ? "Yes" : "No"}</p>
-        <button class="remove-button">Remove</button>
+        <p id="read-message"><strong>Read:</strong> ${book.read ? "Yes" : "No"}</p>
+        <button class="remove-button" data-index="${index}">Remove</button>
         <button class="toggle-read-button">${
             book.read ? "Mark as Unread" : "Mark as Read"
         }</button>
-    `;  
+        `;
         bookList.appendChild(bookCard);
-        console.log(bookCard);
-        console.log(myLibrary);
-        const removeButtons = document.querySelectorAll('.remove-button');
-        removeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                myLibrary.pop();
-                displayBooks();
-            });
-        });
         console.log(myLibrary);
     });
 }
+
+document.getElementById("bookList").addEventListener('click', (event) => {
+    if (event.target.classList.contains('remove-button')) {
+        const index = parseInt(event.target.dataset.index, 10);
+        myLibrary.splice(index, 1);
+        displayBooks();
+    }
+
+    if (event.target.classList.contains('toggle-read-button')) {
+        const index = parseInt(event.target.previousElementSibling.dataset.index, 10);
+        myLibrary[index].read = !myLibrary[index].read;
+        displayBooks();
+    }
+});
 
 const addBookButton = document.querySelector('#add-books');
 addBookButton.addEventListener('click', addBookToLibrary);
@@ -74,6 +81,5 @@ cancelButton.addEventListener('click', () => {
 const clearButton = document.querySelector("#clear-button");
 clearButton.addEventListener('click', () => {
     myLibrary = [];
-    console.log(myLibrary);
     displayBooks();
 });

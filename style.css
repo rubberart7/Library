@@ -11,3 +11,20 @@
 button {
     cursor: pointer;
 }
+
+#bookList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem; /* Space between grid items */
+    padding: 1rem;
+}
+
+/* Individual book card styling */
+.book-card {
+    background-color: #fff; /* Background color */
+    border: 2px solid #007bff; /* Blue border color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Smooth transition for box-shadow and border color */
+}
