@@ -1,12 +1,14 @@
 let myLibrary = [];
 
 // Constructor function for creating new book objects
-function Book(title, author, year, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.year = year;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, year, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
 // Function to add a new book to the library array and display all books
