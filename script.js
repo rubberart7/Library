@@ -14,6 +14,7 @@ class Book {
 // Function to add a new book to the library array and display all books
 function addBookToLibrary(event) {
     event.preventDefault();
+    // event.preventDefault is built into javascript
 
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
@@ -30,6 +31,7 @@ function displayBooks() {
     const bookList = document.getElementById("bookList");
     bookList.innerHTML = ""; 
     // the line above clears all content displayed and then shows the content again for each book in the list
+    // code below loops through all of the books and displays them
     myLibrary.forEach((book, index) => {
         // the index parameter is already the index of the object in the array
         const bookCard = document.createElement("div");
@@ -45,6 +47,7 @@ function displayBooks() {
             book.read ? "Mark as Unread" : "Mark as Read"
         }</button>
         `;
+        // have to give it a data index to be able to remove it later
         bookList.appendChild(bookCard);
         console.log(myLibrary);
         // need to use index parameter to assign index to specific books and access the index
@@ -60,6 +63,7 @@ document.getElementById("bookList").addEventListener('click', (event) => {
         //dataset.index refers to the index of the dataset value
         myLibrary.splice(index, 1);
         displayBooks();
+        // remove the element and display again
     }
 
     if (event.target.classList.contains('toggle-read-button')) {
@@ -68,6 +72,7 @@ document.getElementById("bookList").addEventListener('click', (event) => {
         // using the index allows you to change the correct book to toggle the read status
         myLibrary[index].read = !myLibrary[index].read;
         displayBooks();
+        // toggle and then reedisplay
     }
 });
 
